@@ -1,0 +1,6 @@
+package senac.api.senac.paciente;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PacientesRepository extends JpaRepository<Paciente, Long> {
+}

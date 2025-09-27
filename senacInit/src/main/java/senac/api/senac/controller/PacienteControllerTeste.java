@@ -22,4 +22,21 @@ public class PacienteControllerTeste {
         repository.save(new Paciente(dadosCadastro));
     }
 
+    @GetMapping
+    public Page<DadosListagemPaciente> listar(@PageableDefault(size = 10, sort={"nome"})Pageable paginacao){
+        return repository.findAll(paginacao).map(DadosListagemPaciente::new);
+    }
+
+    @PostMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dadosAtualizar){
+        var paciente = repository.getReferenceById(dadosAtualizar.id());
+        paciente.atualizarInformacoes(dadosAtualizar);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        repository.deleteById(id);}
 }
+

@@ -20,9 +20,8 @@ public record DadosCadastroPaciente(
 
         @NotBlank
         @Pattern(regexp = "\\d{11}") // expressao regular para travar com 11 digitos
-        Long cpf,
+        String cpf,
 
-        @NotBlank
         @Valid // para ele validar o que esta dentro de dadosEndereco
         DadosEndereco endereco
         ) {

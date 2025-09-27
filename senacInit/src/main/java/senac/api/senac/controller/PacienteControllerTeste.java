@@ -27,7 +27,7 @@ public class PacienteControllerTeste {
         return repository.findAll(paginacao).map(DadosListagemPaciente::new);
     }
 
-    @PostMapping
+    @PutMapping
     @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dadosAtualizar){
         var paciente = repository.getReferenceById(dadosAtualizar.id());

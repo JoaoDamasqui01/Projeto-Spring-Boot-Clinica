@@ -22,7 +22,7 @@ public class Paciente{
     private String nome;
     private String email;
     private String telefone;
-    private Long cpf;
+    private String cpf;
 
     @Embedded //Para considerar os campos da endereco a mesma tabela de pacientes
     private Endereco endereco;
@@ -49,4 +49,3 @@ public class Paciente{
 
 
 }
-

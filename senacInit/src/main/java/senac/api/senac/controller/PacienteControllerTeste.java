@@ -9,6 +9,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import senac.api.senac.paciente.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteControllerTeste {
@@ -23,8 +25,10 @@ public class PacienteControllerTeste {
     }
 
     @GetMapping
-    public Page<DadosListagemPaciente> listar(@PageableDefault(size = 10, sort={"nome"})Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemPaciente::new);
+    public Page<DadosListagemPaciente> listar(
+            @PageableDefault(size = 10, sort={"nome"})Pageable paginacao){
+        //Ajutar a busca
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
     }
 
     @PutMapping
@@ -34,9 +38,19 @@ public class PacienteControllerTeste {
         paciente.atualizarInformacoes(dadosAtualizar);
     }
 
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id){
-        repository.deleteById(id);}
+        repository.deleteById(id);
+    }*/
+
+    //Fazer um exclução LÓGICA
+    @DeleteMapping ("/{id}")
+    @Transactional
+    public void excluirPaciente(@PathVariable Long id){
+        var paciente = repository.getReferenceById(id);
+        paciente.exclucaoLogica();
+    }
+
 }
 

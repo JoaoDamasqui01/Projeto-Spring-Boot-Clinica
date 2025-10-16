@@ -23,6 +23,10 @@ public record DadosCadastroPaciente(
         String cpf,
 
         @Valid // para ele validar o que esta dentro de dadosEndereco
-        DadosEndereco endereco
-        ) {
+        DadosEndereco endereco,
+
+        @NotBlank
+        boolean ativo
+) {
+
 }

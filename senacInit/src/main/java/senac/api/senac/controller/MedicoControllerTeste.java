@@ -29,7 +29,7 @@ public class MedicoControllerTeste {
        return repository.findAll(paginacao).map(DadosListagemMedico::new);
     }
 
-    @PutMapping
+    @PutMapping 
     @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
         var medico = repository.getReferenceById(dados.id());
